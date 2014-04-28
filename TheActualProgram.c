@@ -25,5 +25,6 @@ float ER = 1;
 
 task main() {
 	Autonomous();
-	RCcontroller();
+	while (1)
+		RC1();
 }
