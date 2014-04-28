@@ -1,8 +1,15 @@
 #include "autoControl.h"
 #include "autoCode.h"
+//include files - autoControl contains the functions required to run. autoCode is the data recorded.
 
 //rotation sensor = 627.2 counts per rotation.
 // buttons Left = 1   Center = 2   Right = 4
+//this code selects an autonomous function for a starting poing. Displays dialog as follows
+
+// 1)														2)										3)													4)
+//       Which Color?								(Color) Team?						(Color)- Which Side?			(Color) (Side)
+//		Red						Blue					Red		OK		Blue				  Front				    Back			Front OK Back
+
 void Autonomous() {
 	clearLCDLine(0);
  	clearLCDLine(1);
@@ -98,6 +105,7 @@ void Autonomous() {
 	pos += 2 * newPos;
 	clearLCDLine(0);
 
+	//runs the function for the starting spot you selected
 	if (pos == 0)
 		AutoRF();
 	if (pos == 1)
