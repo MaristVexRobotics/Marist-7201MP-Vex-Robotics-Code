@@ -1,10 +1,13 @@
-7201M-Vex-Code
+7201M/N-Vex-Team
 ==============
 
-This is the code repository for the Marist Vex team 7201M
-
+This is the repository for the Marist Vex teams 7201M
+/N
 
 Code By Konrad Kraemer
+
+####NOTE: 
+Design docs go into the [design](https://github.com/kradKraemz/7201M-Vex-Code/tree/Design)branch
 
 ###Changelog:
 -------------
