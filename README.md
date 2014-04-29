@@ -7,7 +7,8 @@ This is the repository for the Marist Vex teams 7201M
 Code By Konrad Kraemer
 
 ####NOTE: 
-Design docs go into the [design](https://github.com/kradKraemz/7201M-Vex-Code/tree/Design)branch
+Design docs go into the [design](https://github.com/kradKraemz/Marist-7201M-Vex-Robotics/tree/Design) branch
+Cad files and instructions can be found in the [Cad Branch](https://github.com/kradKraemz/Marist-7201M-Vex-Robotics/tree/Cad-Files)
 
 ###Changelog:
 -------------
