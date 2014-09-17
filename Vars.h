@@ -1,31 +1,64 @@
-int leftDrive;
-int rightDrive;
-int leftDriveOld; //2.0.7
-int rightDriveOld; //2.0.7
-int armVar;
-int beltVar;
-int leftEncoderVar;
-int rightEncoderVar;
-int leftArmEncoderVar;
-int rightArmEncoderVar;
-int mL = 0;
-int mR = 0;
+//drivetrain vars
+int leftBackDrivePower;
+int rightBackDrivePower;
+int leftFrontDrivePower;
+int rightFrontDrivePower;
+
+//actuator vars
+int scissorPower;
+int frontClawPower;
+int backClawPower;
+
+//Remote Vars
+int rcDriveForward;
+int rcDriveStrafe;
+int rcDriveTurn;
+
+//Encoder Vars
+int leftFrontEncoder;
+int rightFrontEncoder;
+int leftBackEncoder;
+int rightBackEncoder;
+int leftScissorEncoder;
+int rightScissorEncoder;
+
+//Other Sensor Vars
+int gyroValue;
 
 //==================
 //constants
 //==================
-float EL = 1; // not used currently
-float ER = .7; // these two values were used to correct the difference between the two motors,
+float EFL = 1;
+float EFR = 1;
+float EBL = 1;
+float EBR = 1;
 int CORRECTION = 2;
 int AUTOTIMEINTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
-int MAX_ARM_HEIGHT = 700; //2.0.5
-int MIN_ARM_HEIGHT = 20; //2.0.5
-int ACCEL_LIMIT = 10; //2.0.7
-int ARM_UP_HEIGHT = 500; //2.0.7
+int MAX_ARM_HEIGHT = 700;
+int MIN_ARM_HEIGHT = 20;
 
-//addition of 2.0.3
-//-------------------------
 int DEADZONE = 5; // give auto code room to make corrections by limiting the max movement speed.
-//-------------------------
 
 int MAX_WAIT_TIME = 500;
+
+
+
+
+void resetVars() {
+	leftBackDrivePower = 0;
+	rightBackDrivePower = 0;
+	leftFrontDrivePower = 0;
+	rightFrontDrivePower = 0;
+	scissorPower = 0;
+	frontClawPower = 0;
+	backClawPower = 0;
+	rcDriveForward = 0;
+	rcDriveStrafe = 0;
+	rcDriveTurn = 0;
+	leftFrontEncoder = 0;
+	rightFrontEncoder = 0;
+	leftBackEncoder = 0;
+	rightBackEncoder = 0;
+	leftScissorEncoder = 0;
+	rightScissorEncoder = 0;
+}

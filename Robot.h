@@ -1,53 +1,34 @@
 void RunRobot(){
+	//read sensor values and put them into the variables
+	leftFrontEncoder = nMotorEncoder[leftFront];
+	rightFrontEncoder = nMotorEncoder[rightFront];
+	leftBackEncoder = nMotorEncoder[leftBack];
+	rightBackEncoder = nMotorEncoder[rightBack];
 
-	leftEncoderVar = nMotorEncoder[leftFront];
-	rightEncoderVar = nMotorEncoder[rightFront];
-	leftArmEncoderVar = -1 * nMotorEncoder[arm3];
-	//rightArmEncoderVar = nMotorEncoder[arm2];
+	leftScissorEncoder = nMotorEncoder[leftScissor];
+	rightScissorEncoder = nMotorEncoder[rightScissor];
 
-	/*if ((rightArmEncoderVar >= MAX_ARM_HEIGHT || leftArmEncoderVar >= MAX_ARM_HEIGHT) && armVar > 10) //addition from 2.0.5
-		armVar = 10;	*/																				//addition from 2.0.5
+	gyroValue = SensorValue[gyro]/10;
 
+	motor[leftFront] = leftFrontDrivePower * EFL;
+	motor[leftBack] = leftBackDrivePower * EBL;
+	motor[rightFront] = rightFrontDrivePower * EFR;
+	motor[rightBack] = rightBackDrivePower * EBR;
 
-	//2.0.7 Addition
-	/*if ((rightArmEncoderVar >= ARM_UP_HEIGHT || leftArmEncoderVar >= ARM_UP_HEIGHT) && leftDrive-leftDriveOld < ACCEL_LIMIT)
-		leftDrive = leftDriveOld - ACCEL_LIMIT;
-  if ((rightArmEncoderVar >= ARM_UP_HEIGHT || leftArmEncoderVar >= ARM_UP_HEIGHT) && leftDrive-leftDriveOld > ACCEL_LIMIT)
-		leftDrive = leftDriveOld + ACCEL_LIMIT;
-	if ((rightArmEncoderVar >= ARM_UP_HEIGHT || leftArmEncoderVar >= ARM_UP_HEIGHT) && rightDrive-rightDriveOld < ACCEL_LIMIT)
-		rightDrive = rightDriveOld - ACCEL_LIMIT;
-  if ((rightArmEncoderVar >= ARM_UP_HEIGHT || leftArmEncoderVar >= ARM_UP_HEIGHT) && rightDrive-rightDriveOld > ACCEL_LIMIT)
-		rightDrive = rightDriveOld + ACCEL_LIMIT;*/
+	motor[leftScissor] = scissorPower;
+	motor[rightScissor] = scissorPower;
 
-
-	motor[leftFront] = leftDrive * EL;
-	motor[leftBack] = leftDrive * EL;
-	motor[rightFront] = rightDrive * ER;
-	motor[rightBack] = rightDrive * ER;
-
-	motor[arm] = armVar;
-	motor[arm2] = armVar;
-	motor[arm3] = armVar;
-	motor[arm4] = armVar;
-
-	motor[rightBelt] = -1 * beltVar;
-	motor[leftBelt] = -1 * beltVar;
-
-	leftDriveOld = leftDrive;
-	rightDriveOld = rightDrive;
+	motor[frontClaw] = frontClawPower;
+	motor[backClaw] = backClawPower;
 }
 
-void resetVars() {
-	leftDrive = 0;
-  rightDrive = 0;
-  armVar = 0;
-  beltVar = 0;
-  leftEncoderVar = 0;
-  rightEncoderVar = 0;
-  leftArmEncoderVar = 0;
-  rightArmEncoderVar = 0;
-  nMotorEncoder[leftFront] = 0;
-  nMotorEncoder[rightFront] = 0;
-  nMotorEncoder[arm3] = 0;
-  nMotorEncoder[arm2] = 0;
+void resetEncoders() {
+	nMotorEncoder[leftFront] = 0;
+	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftFront] = 0;
+	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftBack] = 0;
+	nMotorEncoder[rightBack] = 0;
+	nMotorEncoder[leftScissor] = 0;
+	nMotorEncoder[rightScissor] = 0;
 }
