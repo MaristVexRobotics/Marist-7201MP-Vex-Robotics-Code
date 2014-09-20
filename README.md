@@ -8,15 +8,15 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.0 BETA (3.0.2b)	
+####Current Version: 3.0 BETA (3.0-beta.2)	
 
 
 
 3.0 Rewrite - codebase completely rewritten to acommodate the mechanum wheels, control the scissor lift, and redo the autonomous to run from a library, instead of the recording done in previous years. Also, remote control code was modified to allow the controls to always be in-relation to driver, regardless of the rotation of the robot.
 
-3.0.2b - Feature- relative omnidirectional drive code completed and fully functional. SEPTEMBER 18, 2014
+3.0-beta.2 - Feature- relative omnidirectional drive code completed and fully functional. SEPTEMBER 18, 2014
 
-3.0.1b - Rewrite. Functioning omnidirectional drive code. SEPTEMBER 17, 2014
+3.0-beta.1 - Rewrite. Functioning omnidirectional drive code. SEPTEMBER 17, 2014
 
 2.0.8.1 Tweak - correction value changed to .5 to make the autonomous even less jumpy
 
