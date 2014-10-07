@@ -49,3 +49,10 @@ Code By Konrad Kraemer
 1.1	Autonomous attempt - unsuccessful - early 2013
 
 1.0	First Official Remote Control Code - Late 2012
+
+
+###TODO:
+Finish Autonomous Template
+Implement Virtual Worlds Testing
+Test Autonomous
+Update Auton-Recording
