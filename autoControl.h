@@ -31,47 +31,220 @@ void Auton(int leftWheels, int rightWheels, int armSpeed, int beltSpeed, int lef
 	armVar += diff / CORRECTION;
 }
 
-void moveForward (int rotations, int speed) {
-	nMotorEncoder[leftFront] = 0;
-  nMotorEncoder[rightFront] = 0;
-	while (nMotorEncoder[leftFront] < rotations) {
-		mL = speed; mR = speed;
-		int diff = nMotorEncoder[leftFront] - nMotorEncoder[rightFront];
-		if (diff > 0 ){
-			mL -= diff * 2;
-		} else if (diff < 0){
-			mR += diff * 2;
-		}
-		motor[leftFront] = mL * EL;
-		motor[leftBack] = mL * EL;
-		motor[rightFront] = mR * ER;
-		motor[rightBack] = mR * ER;
+
+void moveForward(int ticks, int speed) {
+	resetEncoders();
+	leftBackDrivePower   = speed;
+	rightBackDrivePower  = speed;
+	leftFrontDrivePower  = speed;
+	rightFrontDrivePower = speed;
+	RunRobot();
+	while (leftFrontEncoder  < ticks
+			&& rightFrontEncoder < ticks
+			&& leftBackEncoder   < ticks
+			&& rightBackEncoder  < ticks) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (leftFrontEncoder + rightFrontEncoder + leftBackEncoder + rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   += (averageEncoder - leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  += (averageEncoder - rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  += (averageEncoder - leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower += (averageEncoder - rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
 	}
-	motor[leftFront] = 0;
-	motor[leftBack] = 0;
-	motor[rightFront] = 0;
-	motor[rightBack] = 0;
-	wait10Msec(1);
 }
-void moveBack (int rotations, int speed) {
-	nMotorEncoder[leftFront] = 0;
-	nMotorEncoder[rightFront] = 0;
-	while(nMotorEncoder[leftFront] > -1* rotations) {
-		mL = -speed; mR = -speed;
-		int diff = nMotorEncoder[leftFront] - nMotorEncoder[rightFront];
-		if (diff > 0 ){
-			mR += diff * 2;
-		} else if (diff < 0){
-			mL -= diff * 2;
-		}
-		motor[leftFront] = mL * EL;
-		motor[leftBack] = mL * EL;
-		motor[rightFront] = mR * ER;
-		motor[rightBack] = mR * ER;
+
+void moveBackward(int ticks, int speed) {
+	resetEncoders();
+	leftBackDrivePower   = -speed;
+	rightBackDrivePower  = -speed;
+	leftFrontDrivePower  = -speed;
+	rightFrontDrivePower = -speed;
+	RunRobot();
+	while (leftFrontEncoder  > ticks
+			&& rightFrontEncoder > ticks
+			&& leftBackEncoder   > ticks
+			&& rightBackEncoder  > ticks) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (leftFrontEncoder + rightFrontEncoder + leftBackEncoder + rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   += (averageEncoder - leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  += (averageEncoder - rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  += (averageEncoder - leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower += (averageEncoder - rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
 	}
-	motor[leftFront] = 0;
-	motor[leftBack] = 0;
-	motor[rightFront] = 0;
-	motor[rightBack] = 0;
-	wait10Msec(1);
 }
+void moveLeft(int ticks, int speed) {
+	resetEncoders();
+	leftBackDrivePower   = speed;
+	rightBackDrivePower  = -speed;
+	leftFrontDrivePower  = -speed;
+	rightFrontDrivePower = speed;
+	RunRobot();
+	while (leftFrontEncoder  > -ticks
+			&& rightFrontEncoder > ticks
+			&& leftBackEncoder   > ticks
+			&& rightBackEncoder  > -ticks) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = -speed;
+		leftFrontDrivePower  = -speed;
+		rightFrontDrivePower = speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (rightFrontEncoder - leftFrontEncoder + leftBackEncoder - rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   += (averageEncoder - leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  += (averageEncoder + rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  += (averageEncoder + leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower += (averageEncoder - rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
+	}
+}
+void moveRight(int ticks, int speed) {
+	resetEncoders();
+	leftBackDrivePower   = -speed;
+	rightBackDrivePower  = speed;
+	leftFrontDrivePower  = speed;
+	rightFrontDrivePower = -speed;
+	RunRobot();
+	while (leftFrontEncoder  > ticks
+			&& rightFrontEncoder > -ticks
+			&& leftBackEncoder   > -ticks
+			&& rightBackEncoder  > ticks) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = -speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = -speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (leftFrontEncoder - rightFrontEncoder - leftBackEncoder + rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   += (averageEncoder + leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  += (averageEncoder - rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  += (averageEncoder - leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower += (averageEncoder + rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
+	}
+}
+
+void drivetrainStop() {
+	leftBackDrivePower = 0;
+	rightBackDrivePower = 0;
+	leftFrontDrivePower = 0;
+	rightFrontDrivePower = 0;
+	RunRobot();
+}
+
+
+void turnLeft(int degrees, int power) {
+	resetEncoders();
+	leftBackDrivePower   = -speed;
+	rightBackDrivePower  = speed;
+	leftFrontDrivePower  = -speed;
+	rightFrontDrivePower = speed;
+	RunRobot();
+	while (-gyroValue < degrees) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = -speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = -speed;
+		rightFrontDrivePower = speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (-leftFrontEncoder + rightFrontEncoder - leftBackEncoder + rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   -= (averageEncoder + leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  += (averageEncoder - rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  -= (averageEncoder + leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower += (averageEncoder - rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
+	}
+}
+
+void turnRight(int degrees, int power) {
+	resetEncoders();
+	leftBackDrivePower   = speed;
+	rightBackDrivePower  = -speed;
+	leftFrontDrivePower  = speed;
+	rightFrontDrivePower = -speed;
+	RunRobot();
+	while (gyroValue < degrees) { // until a motor has reached the distance
+
+			//reset motor speeds
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = -speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = -speed;
+
+		//calculate average encoder distance
+		int averageEncoder  = (leftFrontEncoder - rightFrontEncoder + leftBackEncoder - rightBackEncoder) / 4;
+
+		//check and adjust based on encoder values.
+		leftBackDrivePower   += (averageEncoder - leftBackEncoder)   * CORRECTION;
+		rightBackDrivePower  -= (averageEncoder + rightBackEncoder)  * CORRECTION;
+		leftFrontDrivePower  += (averageEncoder - leftFrontEncoder)  * CORRECTION;
+		rightFrontDrivePower -= (averageEncoder + rightFrontEncoder) * CORRECTION;
+
+		RunRobot();
+	}
+}
+
+void move180(int power); // moves backwards while performing a 180 degree turn, so it ends up facing where it's going.
+
+void setScissorHeight(int height) {
+	scissorHeight = height;
+}
+
+void openFrontClaw() {
+
+}
+
+void closeFrontClaw();
+
+void openBackClaw();
+void closeBackClaw();
+
+void snapLeftLine();
+void snapRightLine();
+void snapForwardLine();
+void snapBackLine();
+
+void snapFrontLeft();
+void snapFrontRight();
+void snapBackLeft();
+void snapBackRight();
+
+void orientToLine();
+
+void waitBlockCompletion();
+void signalBlockComplete();

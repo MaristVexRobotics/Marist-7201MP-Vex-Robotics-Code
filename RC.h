@@ -1,5 +1,7 @@
 void RC(){
 
+	//TODO, add code to maintain scissor hight
+
 	//Drivetrain
 	rcDriveForward = vexRT[Ch3]; //left  thumbstick up   down
 	rcDriveStrafe  = vexRT[Ch4]; //left  thumbstick left right
@@ -7,7 +9,6 @@ void RC(){
 
 	//Scissor Lift
 	scissorPower	 = vexRT[Ch2Xmtr2]; //right thumbstick up down on second controller
-
 
 	//Front Claw
 	if (vexRT[Btn6U]) {

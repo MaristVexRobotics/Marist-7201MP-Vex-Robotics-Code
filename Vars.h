@@ -6,6 +6,7 @@ int rightFrontDrivePower;
 
 //actuator vars
 int scissorPower;
+int scissorHeight;
 int frontClawPower;
 int backClawPower;
 
