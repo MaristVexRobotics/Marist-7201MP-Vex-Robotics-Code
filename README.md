@@ -1,7 +1,7 @@
-7201M/N-Vex-Team
+7201M/P-Vex-Team
 ==============
 
-This is the code repository for the Marist Vex teams 7201M/N
+This is the code repository for the Marist Vex teams 7201M/P
 
 Code By Konrad Kraemer
 
