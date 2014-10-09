@@ -9,6 +9,8 @@ void RC(){
 
 	//Scissor Lift
 	scissorPower	 = vexRT[Ch2Xmtr2]; //right thumbstick up down on second controller
+	if (scissorPower >= 0 && scissorPower < MAINTAIN_HEIGHT_SCISSOR_POWER)
+		scissorPower = MAINTAIN_HEIGHT_SCISSOR_POWER;
 
 	//Front Claw
 	if (vexRT[Btn6U]) {

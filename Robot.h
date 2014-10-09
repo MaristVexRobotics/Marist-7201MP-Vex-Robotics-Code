@@ -6,7 +6,7 @@ void RunRobot(){
 	rightBackEncoder = nMotorEncoder[rightBack];
 
 	leftScissorEncoder = nMotorEncoder[leftScissor1];
-	rightScissorEncoder = nMotorEncoder[rightScissor];
+	rightScissorEncoder = nMotorEncoder[rightScissor1];
 
 	gyroValue = SensorValue[gyro]/10;
 
@@ -17,7 +17,8 @@ void RunRobot(){
 
 	motor[leftScissor1] = scissorPower;
 	motor[leftScissor2] = scissorPower;
-	motor[rightScissor] = scissorPower;
+	motor[rightScissor1] = scissorPower;
+	motor[rightScissor2] = scissorPower;
 
 	motor[frontClaw] = frontClawPower;
 	motor[backClaw] = backClawPower;
@@ -31,5 +32,5 @@ void resetEncoders() {
 	nMotorEncoder[leftBack] = 0;
 	nMotorEncoder[rightBack] = 0;
 	nMotorEncoder[leftScissor1] = 0;
-	nMotorEncoder[rightScissor] = 0;
+	nMotorEncoder[rightScissor1] = 0;
 }

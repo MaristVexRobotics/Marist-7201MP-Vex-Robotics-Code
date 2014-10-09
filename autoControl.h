@@ -221,30 +221,94 @@ void turnRight(int degrees, int power) {
 
 void move180(int power); // moves backwards while performing a 180 degree turn, so it ends up facing where it's going.
 
-void setScissorHeight(int height) {
-	scissorHeight = height;
+void setScissorHeight(int height, int speed) {
+	if (height < leftScissorEncoder) {
+		scissorPower = speed;
+		while(height < leftScissorEncoder); // wait until the scissor lift has reached the height
+		scissorPower = MAINTAIN_HEIGHT_SCISSOR_POWER;
+	} else {
+		scissorPower = -speed;
+		while(height > leftScissorEncoder); // wait until the scissor lift has reached the height
+		scissorPower = MAINTAIN_HEIGHT_SCISSIR_POWER;
+	}
 }
 
 void openFrontClaw() {
-
+	frontClawPower = 127;
+	wait1Msec(800);
+	frontClawPower = 0;
 }
 
-void closeFrontClaw();
+void closeFrontClaw() {
+	frontClawPower = -127;
+	wait1Msec(1000);
+	frontClawPower = 0;
+}
 
-void openBackClaw();
-void closeBackClaw();
+void openBackClaw() {
+	backClawPower = 127;
+	wait1Msec(800);
+	backClawPower = 0;
+}
+void closeBackClaw() {
+	backClawPower = -127;
+	wait1Msec(1000);
+	backClawPower = 0;
+}
 
-void snapLeftLine();
-void snapRightLine();
-void snapForwardLine();
-void snapBackLine();
+void snapLeftLine(int speed) {
+	while (lineReadMid > LINE_SENSOR_THRESHOLD) {
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = -speed;
+		leftFrontDrivePower  = -speed;
+		rightFrontDrivePower = speed;
+	}
+	leftBackDrivePower   = 0;
+	rightBackDrivePower  = 0;
+	leftFrontDrivePower  = 0;
+	rightFrontDrivePower = 0;
+}
+void snapRightLine(int speed) {
+	while (lineReadMid > LINE_SENSOR_THRESHOLD) {
+		leftBackDrivePower   = -speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = -speed;
+	}
+	leftBackDrivePower   = 0;
+	rightBackDrivePower  = 0;
+	leftFrontDrivePower  = 0;
+	rightFrontDrivePower = 0;
+}
+void snapForwardLine(int speed) {
+	while (lineReadMid > LINE_SENSOR_THRESHOLD) {
+		leftBackDrivePower   = speed;
+		rightBackDrivePower  = speed;
+		leftFrontDrivePower  = speed;
+		rightFrontDrivePower = speed;
+	}
+	leftBackDrivePower   = 0;
+	rightBackDrivePower  = 0;
+	leftFrontDrivePower  = 0;
+	rightFrontDrivePower = 0;
+}
+void snapBackLine(int speed) {
+	while (lineReadMid > LINE_SENSOR_THRESHOLD) {
+		leftBackDrivePower   = -speed;
+		rightBackDrivePower  = -speed;
+		leftFrontDrivePower  = -speed;
+		rightFrontDrivePower = -speed;
+	}
+	leftBackDrivePower   = 0;
+	rightBackDrivePower  = 0;
+	leftFrontDrivePower  = 0;
+	rightFrontDrivePower = 0;
+}
 
-void snapFrontLeft();
-void snapFrontRight();
-void snapBackLeft();
-void snapBackRight();
-
-void orientToLine();
+void snapFrontLeft(int speed);
+void snapFrontRight(int speed);
+void snapBackLeft(int speed);
+void snapBackRight(int speed);
 
 void waitBlockCompletion();
 void signalBlockComplete();

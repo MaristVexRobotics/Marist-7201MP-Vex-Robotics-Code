@@ -6,7 +6,6 @@ int rightFrontDrivePower;
 
 //actuator vars
 int scissorPower;
-int scissorHeight;
 int frontClawPower;
 int backClawPower;
 
@@ -25,22 +24,27 @@ int rightScissorEncoder;
 
 //Other Sensor Vars
 int gyroValue;
+int lineReadMid;
+int lineReadSide;
 
 //==================
 //constants
 //==================
-float EFL = 1;
-float EFR = 1;
-float EBL = 1;
-float EBR = 1;
-int CORRECTION = 2;
-int AUTOTIMEINTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
-int MAX_ARM_HEIGHT = 700;
-int MIN_ARM_HEIGHT = 20;
+const float EFL = 1;
+const float EFR = 1;
+const float EBL = 1;
+const float EBR = 1;
+const int CORRECTION = 2;
+const int AUTOTIMEINTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
+const int MAX_SCISSOR_HEIGHT = 700;
+const int MIN_SCISSOR_HEIGHT = 20;
+const int MAINTAIN_HEIGHT_SCISSOR_POWER = 10;
 
-int DEADZONE = 5; // give auto code room to make corrections by limiting the max movement speed.
+const int DEADZONE = 5; // give auto code room to make corrections by limiting the max movement speed.
 
-int MAX_WAIT_TIME = 500;
+const int MAX_WAIT_TIME = 500;
+
+const int LINE_SENSOR_THRESHOLD = 505;
 
 
 
