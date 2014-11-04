@@ -21,4 +21,8 @@ void calcMotorValues() {
 	leftBackDrivePower = actualFWD + actualLFT + rcDriveTurn;
 	rightFrontDrivePower = actualFWD + actualLFT - rcDriveTurn;
 	rightBackDrivePower = actualFWD - actualLFT - rcDriveTurn;
+
+
+	//@TODO: belt thingy, jump to spots.
+
 }

@@ -8,10 +8,10 @@
 #pragma config(Motor,  port2,  rightBack,      tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_2, 1000)
 #pragma config(Motor,  port3,  leftScissor1,   tmotorVex393, openLoop, reversed)
 #pragma config(Motor,  port4,  leftScissor2,   tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port5,  frontClaw,      tmotorVex393, openLoop)
+#pragma config(Motor,  port5,  backClaw,       tmotorVex393, openLoop)
 #pragma config(Motor,  port6,  rightScissor2,  tmotorVex393, openLoop)
 #pragma config(Motor,  port7,  rightScissor1,  tmotorVex393, openLoop)
-#pragma config(Motor,  port8,  backClaw,       tmotorVex393, openLoop)
+#pragma config(Motor,  port8,  frontClaw,      tmotorVex393, openLoop)
 #pragma config(Motor,  port9,  rightFront,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
 #pragma config(Motor,  port10, leftFront,      tmotorVex393, openLoop, encoder, encoderPort, I2C_4, 1000)
 #pragma platform(VEX)
@@ -184,6 +184,38 @@ task autonomous() {
 	motor[arm4] = 0;
 	motor[rightBelt] = 127;
 	motor[leftBelt] = 127;*/
+	leftFrontDrivePower = 127;
+	leftBackDrivePower = 127;
+	rightFrontDrivePower = 127;
+	rightBackDrivePower = 127;
+	RunRobot();
+	wait10Msec(100);
+	leftFrontDrivePower = 127;
+	leftBackDrivePower = -127;
+	rightFrontDrivePower = -127;
+	rightBackDrivePower = 127;
+	RunRobot();
+	wait10Msec(400);
+
+	leftFrontDrivePower = 127;
+	leftBackDrivePower = 127;
+	rightFrontDrivePower = 127;
+	rightBackDrivePower = 127;
+	RunRobot();
+	wait10Msec(150);
+
+	leftFrontDrivePower = -127;
+	leftBackDrivePower = -127;
+	rightFrontDrivePower = 127;
+	rightBackDrivePower = 127;
+	RunRobot();
+	wait10Msec(100);
+
+	leftFrontDrivePower = 0;
+	leftBackDrivePower = 0;
+	rightFrontDrivePower = 0;
+	rightBackDrivePower = 0;
+	RunRobot();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

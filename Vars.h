@@ -23,7 +23,7 @@ int leftScissorEncoder;
 int rightScissorEncoder;
 
 //Other Sensor Vars
-int gyroValue;
+float gyroValue;
 int lineReadMid;
 int lineReadSide;
 
@@ -54,7 +54,8 @@ void resetVars() {
 	rightBackDrivePower = 0;
 	leftFrontDrivePower = 0;
 	rightFrontDrivePower = 0;
-	scissorPower = 0;
+	lScissorPower = 0;
+	rScissorPower = 0;
 	frontClawPower = 0;
 	backClawPower = 0;
 	rcDriveForward = 0;

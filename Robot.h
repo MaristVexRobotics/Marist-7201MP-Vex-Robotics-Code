@@ -21,7 +21,6 @@ void RunRobot(){
 	motor[rightScissor2] = scissorPower;
 
 	motor[frontClaw] = frontClawPower;
-	motor[backClaw] = backClawPower;
 }
 
 void resetEncoders() {

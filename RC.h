@@ -12,26 +12,15 @@ void RC(){
 	if (scissorPower >= 0 && scissorPower < MAINTAIN_HEIGHT_SCISSOR_POWER)
 		scissorPower = MAINTAIN_HEIGHT_SCISSOR_POWER;
 
+
 	//Front Claw
-	if (vexRT[Btn6U]) {
+	if (vexRT[Btn6UXmtr2]) {
 		frontClawPower = 127;
 	}
-	if (vexRT[Btn6D]) {
+	if (vexRT[Btn6DXmtr2]) {
 		frontClawPower = -127;
 	}
-	if(vexRT[Btn6D] == vexRT[Btn6U]) { //if they are both not pushed, or both pushed, dont move the claw
+	if (vexRT[Btn6DXmtr2] == vexRT[Btn6UXmtr2]) { //if they are both not pushed, or both pushed, dont move the claw
 		frontClawPower = 0;
-	}
-
-
-	//Rear Claw
-	if (vexRT[Btn5U]) {
-		backClawPower = 127;
-	}
-	if (vexRT[Btn5D]) {
-		backClawPower = -127;
-	}
-	if (vexRT[Btn5U] == vexRT[Btn5D]) {
-		backClawPower = 0;
 	}
 }
