@@ -15,12 +15,23 @@ void RC(){
 
 	//Front Claw
 	if (vexRT[Btn6UXmtr2]) {
-		frontClawPower = 127;
+		beltPower = 127;
 	}
 	if (vexRT[Btn6DXmtr2]) {
-		frontClawPower = -127;
+		beltPower = -127;
 	}
 	if (vexRT[Btn6DXmtr2] == vexRT[Btn6UXmtr2]) { //if they are both not pushed, or both pushed, dont move the claw
-		frontClawPower = 0;
+		beltPower = 0;
+	}
+
+	if (vexRT[Btn8UXmtr2] != vexRT[Btn8DXmtr2]) {
+		if (vexRT[Btn8UXmtr2])
+			beltNextPos = beltCurrentPos + 1;
+		if (vexRT[Btn8DXmtr2])
+			beltNextPos = beltCurrentPos - 1;
+		if (beltNextPos == 0)
+			beltNextPos = 4;
+		else if (beltNextPos == 5)
+			beltNextPos = 1;
 	}
 }

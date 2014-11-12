@@ -5,7 +5,8 @@ void calcMotorValues() {
 	int actualFWD = rcDriveForward * cosDegrees(gyroValue) + rcDriveStrafe * cosDegrees(90 + gyroValue);
 	int actualLFT = rcDriveForward * sinDegrees(gyroValue) + rcDriveStrafe * sinDegrees(90 + gyroValue);
 
-
+	if (abs(actualLFT) <= DEADZONE)
+		actualLFT = 0;
 	/*
 	int actualFWD = rcDriveForward;
 	int actualLFT = rcDriveStrafe;
@@ -24,5 +25,7 @@ void calcMotorValues() {
 
 
 	//@TODO: belt thingy, jump to spots.
+
+
 
 }

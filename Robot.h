@@ -20,7 +20,7 @@ void RunRobot(){
 	motor[rightScissor1] = scissorPower;
 	motor[rightScissor2] = scissorPower;
 
-	motor[frontClaw] = frontClawPower;
+	motor[frontClaw] = beltPower;
 }
 
 void resetEncoders() {
