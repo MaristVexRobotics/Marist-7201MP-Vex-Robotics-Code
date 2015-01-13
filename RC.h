@@ -17,6 +17,10 @@ void RC(){
 		else //if (vexRT[Btn5DXmtr2] || vexRT[Btn6DXmtr2])
 			beltPower = -50;
 
+
+	if (vexRT[Btn8D]) //3.0.1
+		gyroOverride = true;
+
 	//Belt
 	/*if (vexRT[Btn8UXmtr2] != vexRT[Btn8DXmtr2] && beltNextPos < 4) {
 		if (vexRT[Btn8UXmtr2])

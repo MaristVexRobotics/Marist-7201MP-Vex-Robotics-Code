@@ -37,12 +37,20 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0                               |
+|   Current Version 3.0.1                             |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.1 Feature - Added a gyroscope override. This is |
+|           because the drive function previously     |
+|           locked up if the robot was at all moved   |
+|           while the gyroscope was being calibrated, |
+|           this change allows the user to bypass the |
+|           gyrosope in the case of an "emergency"    |
+|                     JANUARY 13, 2015                |
 |                                                     |
 | 3.0   Rewrite - codebase completely rewritten to    |
 |           acommodate the mechanum wheels, control   |

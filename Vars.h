@@ -29,7 +29,7 @@ int lineReadMid;
 int lineReadSide;
 
 
-
+bool gyroOverride = false;//3.0.1
 
 //==================
 //constants

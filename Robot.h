@@ -9,8 +9,10 @@ void RunRobot(){
 	rightArmDegrees = SensorValue[leftScissorRot];//SensorValue[rightScissorRot];
 	beltSensorVal   = nMotorEncoder[rightBelt];
 
-
-	gyroValue = SensorValue[gyro]/10;
+	if (gyroOverride)//3.0.1
+		gyroValue = 0;
+	else
+		gyroValue = SensorValue[gyro]/10;
 
 	motor[leftFront]  = leftFrontDrivePower * EFL;
 	motor[leftBack]   = leftBackDrivePower * EBL;
