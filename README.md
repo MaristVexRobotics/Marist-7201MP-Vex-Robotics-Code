@@ -12,6 +12,8 @@ Code By Konrad Kraemer
 
 
 
+3.0.1.1 Fix - Fixed the competition template
+
 3.0.1 Feature - Added a gyroscope override. This is because the drive function previously locked up if the robot was at all moved while the gyroscope was being calibrated, this change allows the user to bypass the gyrosope in the case of an "emergency". JANUARY 13, 2015
 
 3.0 Rewrite - codebase completely rewritten to acommodate the mechanum wheels, control the scissor lift, and redo the autonomous to run from a library, instead of the recording done in previous years. Also, remote control code was modified to allow the controls to always be in-relation to driver, regardless of the rotation of the robot. DECEMBER 23, 2014
