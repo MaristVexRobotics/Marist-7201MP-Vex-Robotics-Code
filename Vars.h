@@ -59,20 +59,20 @@ const int BELT_POS5 = 500;
 
 
 void resetVars() {
-	leftBackDrivePower = 0;
-	rightBackDrivePower = 0;
-	leftFrontDrivePower = 0;
-	rightFrontDrivePower = 0;
+  leftBackDrivePower = 0;
+  rightBackDrivePower = 0;
+  leftFrontDrivePower = 0;
+  rightFrontDrivePower = 0;
   armPower = 0;
-	beltPower = 0;
-	rcDriveForward = 0;
-	rcDriveStrafe = 0;
-	rcDriveTurn = 0;
-	leftFrontEncoder = 0;
-	rightFrontEncoder = 0;
-	leftBackEncoder = 0;
-	rightBackEncoder = 0;
-	leftArmDegrees = 0;
-	rightArmDegrees = 0;
-	beltSensorVal = 0;
+  beltPower = 0;
+  rcDriveForward = 0;
+  rcDriveStrafe = 0;
+  rcDriveTurn = 0;
+  leftFrontEncoder = 0;
+  rightFrontEncoder = 0;
+  leftBackEncoder = 0;
+  rightBackEncoder = 0;
+  leftArmDegrees = 0;
+  rightArmDegrees = 0;
+  beltSensorVal = 0;
 }
