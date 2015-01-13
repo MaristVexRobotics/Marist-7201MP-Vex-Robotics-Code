@@ -167,7 +167,7 @@ void pre_auton() {
   bStopTasksBetweenModes = true;
 
   resetVars(); // reset all variables
-	resetSensors(); // reset all sensors
+  resetSensors(); // reset all sensors
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -196,11 +196,11 @@ task autonomous() {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 task usercontrol() {
-	// User control code here, inside the loop
+  // User control code here, inside the loop
 
-	while (true) {
-		RC();  // recieve inputs
-		calcMotorValues();
-		RunRobot();
-	}
+  while (true) {
+    RC();  // recieve inputs
+    calcMotorValues();
+    RunRobot();
+  }
 }
