@@ -8,11 +8,11 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.0 BETA (3.0-beta.2)	
+####Current Version: 3.0
 
 
 
-3.0 Rewrite - codebase completely rewritten to acommodate the mechanum wheels, control the scissor lift, and redo the autonomous to run from a library, instead of the recording done in previous years. Also, remote control code was modified to allow the controls to always be in-relation to driver, regardless of the rotation of the robot.
+3.0 Rewrite - codebase completely rewritten to acommodate the mechanum wheels, control the scissor lift, and redo the autonomous to run from a library, instead of the recording done in previous years. Also, remote control code was modified to allow the controls to always be in-relation to driver, regardless of the rotation of the robot. DECEMBER 23, 2014
 
 3.0-beta.2 - Feature- relative omnidirectional drive code completed and fully functional. SEPTEMBER 18, 2014
 
@@ -52,10 +52,4 @@ Code By Konrad Kraemer
 
 
 ###TODO:
-Finish Autonomous Template
-
 Implement Virtual Worlds Testing
-
-Test Autonomous
-
-Update Auton-Recording

@@ -5,10 +5,9 @@ int leftFrontDrivePower;
 int rightFrontDrivePower;
 
 //actuator vars
-int scissorPower;
+int armPower;
 int beltPower;
-int beltNextPos;
-int beltCurrentPos;
+int beltSensorVal;
 
 
 //Remote Vars
@@ -21,13 +20,16 @@ int leftFrontEncoder;
 int rightFrontEncoder;
 int leftBackEncoder;
 int rightBackEncoder;
-int leftScissorEncoder;
-int rightScissorEncoder;
+int leftArmDegrees;
+int rightArmDegrees;
 
 //Other Sensor Vars
 float gyroValue;
 int lineReadMid;
 int lineReadSide;
+
+
+
 
 //==================
 //constants
@@ -36,11 +38,10 @@ const float EFL = 1;
 const float EFR = 1;
 const float EBL = 1;
 const float EBR = 1;
-const int CORRECTION = 2;
-const int AUTOTIMEINTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
-const int MAX_SCISSOR_HEIGHT = 700;
-const int MIN_SCISSOR_HEIGHT = 20;
-const int MAINTAIN_HEIGHT_SCISSOR_POWER = 10;
+const int POTENTIOMETER_DIFF = 284;
+const float CORRECTION = .5;
+const int AUTO_TIME_INTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
+const int MAINTAIN_HEIGHT_ARM_POWER = 10;
 
 const int DEADZONE = 10; // give auto code room to make corrections by limiting the max movement speed.
 
@@ -48,11 +49,11 @@ const int MAX_WAIT_TIME = 500;
 
 const int LINE_SENSOR_THRESHOLD = 505;
 
-const int BELT_HOOK1_POS     = 100;
-const int BELT_HOOK2_POS     = 200;
-const int BELT_HOOK3_POS     = 300;
-const int BELT_SKYRISE_POS   = 400;
-const int BELT_ROLL_OVER_POS = 500;
+const int BELT_POS1 = 100;
+const int BELT_POS2 = 200;
+const int BELT_POS3 = 300;
+const int BELT_POS4 = 400;
+const int BELT_POS5 = 500;
 
 
 
@@ -62,7 +63,7 @@ void resetVars() {
 	rightBackDrivePower = 0;
 	leftFrontDrivePower = 0;
 	rightFrontDrivePower = 0;
-	scissorPower = 0;
+  armPower = 0;
 	beltPower = 0;
 	rcDriveForward = 0;
 	rcDriveStrafe = 0;
@@ -71,6 +72,7 @@ void resetVars() {
 	rightFrontEncoder = 0;
 	leftBackEncoder = 0;
 	rightBackEncoder = 0;
-	leftScissorEncoder = 0;
-	rightScissorEncoder = 0;
+	leftArmDegrees = 0;
+	rightArmDegrees = 0;
+	beltSensorVal = 0;
 }
