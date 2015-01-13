@@ -168,13 +168,13 @@
 
 
 task main() {
-	resetVars(); // reset all variables
-	resetSensors(); // reset all sensors
-	AutoRF();//run the RedFront autonomous
-	while (true) {
-		RC();  // recieve inputs
-		calcMotorValues();
-		writeStream();
-		RunRobot();
-	}
+  resetVars(); // reset all variables
+  resetSensors(); // reset all sensors
+  AutoRF();//run the RedFront autonomous
+  while (true) {
+    RC();  // recieve inputs
+    calcMotorValues();
+    writeStream();
+    RunRobot();
+  }
 }
