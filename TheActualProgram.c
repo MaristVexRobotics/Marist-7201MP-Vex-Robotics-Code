@@ -37,12 +37,14 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0.1                             |
+|   Current Version 3.0.1.1                           |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.1.1 Fix - Fixed the competition template        |
 |                                                     |
 | 3.0.1 Feature - Added a gyroscope override. This is |
 |           because the drive function previously     |

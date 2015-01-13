@@ -1,19 +1,22 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
 #pragma config(Sensor, in1,    gyro,           sensorGyro)
-#pragma config(Sensor, I2C_1,  left,           sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Sensor, I2C_2,  right,          sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Sensor, I2C_3,  armL,           sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Sensor, I2C_4,  armR,           sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Motor,  port1,  leftBack,       tmotorVex393, openLoop, encoder, encoderPort, I2C_1, 1000)
-#pragma config(Motor,  port2,  rightBack,      tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_2, 1000)
-#pragma config(Motor,  port3,  leftScissor1,   tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port4,  leftScissor2,   tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port5,  backClaw,       tmotorVex393, openLoop)
-#pragma config(Motor,  port6,  rightScissor2,  tmotorVex393, openLoop)
-#pragma config(Motor,  port7,  rightScissor1,  tmotorVex393, openLoop)
-#pragma config(Motor,  port8,  frontClaw,      tmotorVex393, openLoop)
-#pragma config(Motor,  port9,  rightFront,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
-#pragma config(Motor,  port10, leftFront,      tmotorVex393, openLoop, encoder, encoderPort, I2C_4, 1000)
+#pragma config(Sensor, in2,    leftScissorRot, sensorPotentiometer)
+#pragma config(Sensor, in3,    rightScissorRot,sensorPotentiometer)
+#pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
+#pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
+#pragma config(Sensor, I2C_3,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
+#pragma config(Sensor, I2C_4,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
+#pragma config(Sensor, I2C_5,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
+#pragma config(Motor,  port1,           rightFront,    tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
+#pragma config(Motor,  port2,           leftBack,      tmotorVex393, openLoop, encoder, encoderPort, I2C_1, 1000)
+#pragma config(Motor,  port3,           rightBack,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_4, 1000)
+#pragma config(Motor,  port4,           leftFront,     tmotorVex393, openLoop, encoder, encoderPort, I2C_2, 1000)
+#pragma config(Motor,  port5,           rightScissor1, tmotorVex393, openLoop, reversed)
+#pragma config(Motor,  port6,           rightScissor2, tmotorVex393, openLoop, reversed)
+#pragma config(Motor,  port7,           leftScissor1,  tmotorVex393, openLoop)
+#pragma config(Motor,  port8,           leftScissor2,  tmotorVex393, openLoop)
+#pragma config(Motor,  port9,           leftBelt,      tmotorVex393, openLoop)
+#pragma config(Motor,  port10,          rightBelt,     tmotorVex393, openLoop, encoder, encoderPort, I2C_5, 1000)
 #pragma platform(VEX)
 
 //Competition Control and Duration Settings
@@ -24,12 +27,22 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0 BETA                          |
+|   Current Version 3.0.1.1                           |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.1.1 Fix - Fixed the competition template        |
+|                                                     |
+| 3.0.1 Feature - Added a gyroscope override. This is |
+|           because the drive function previously     |
+|           locked up if the robot was at all moved   |
+|           while the gyroscope was being calibrated, |
+|           this change allows the user to bypass the |
+|           gyrosope in the case of an "emergency"    |
+|                     JANUARY 13, 2015                |
 |                                                     |
 | 3.0   Rewrite - codebase completely rewritten to    |
 |           acommodate the mechanum wheels, control   |
@@ -127,13 +140,15 @@
 //includes
 //=====================
 #include "Vars.h" // file for global vars
-
 #include "calculateMotors.h"
+
 
 #include "Robot.h"  //when using actual robot
 #include "RC.h"
 
-//#include "Autonomous.c" // main autonomous file, includes more files
+#include "autoControl.h"
+#include "autoCode.h"
+
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
@@ -151,8 +166,8 @@ void pre_auton() {
   // Autonomous and Tele-Op modes. You will need to manage all user created tasks if set to false.
   bStopTasksBetweenModes = true;
 
-	// All activities that occur before the competition starts
-	// Example: clearing encoders, setting servo positions, ...
+  resetVars(); // reset all variables
+	resetSensors(); // reset all sensors
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -165,57 +180,10 @@ void pre_auton() {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 task autonomous() {
-  resetVars(); // reset all variables
-  resetEncoders();
-	//Autonomous();
-	//AutoBF();
-	//AutoBB(); //Doesn't work
-	//AutoRF();
-	//AutoRB(); //Doesn't work
-  /*wait10Msec(100);
-  motor[arm] = 50;
-	motor[arm2] = 50;
-	motor[arm3] = 50;
-	motor[arm4] = 50;
-	wait10Msec(70);
-	motor[arm] = 0;
-	motor[arm2] = 0;
-	motor[arm3] = 0;
-	motor[arm4] = 0;
-	motor[rightBelt] = 127;
-	motor[leftBelt] = 127;*/
-	leftFrontDrivePower = 127;
-	leftBackDrivePower = 127;
-	rightFrontDrivePower = 127;
-	rightBackDrivePower = 127;
-	RunRobot();
-	wait10Msec(100);
-	leftFrontDrivePower = 127;
-	leftBackDrivePower = -127;
-	rightFrontDrivePower = -127;
-	rightBackDrivePower = 127;
-	RunRobot();
-	wait10Msec(400);
-
-	leftFrontDrivePower = 127;
-	leftBackDrivePower = 127;
-	rightFrontDrivePower = 127;
-	rightBackDrivePower = 127;
-	RunRobot();
-	wait10Msec(150);
-
-	leftFrontDrivePower = -127;
-	leftBackDrivePower = -127;
-	rightFrontDrivePower = 127;
-	rightBackDrivePower = 127;
-	RunRobot();
-	wait10Msec(100);
-
-	leftFrontDrivePower = 0;
-	leftBackDrivePower = 0;
-	rightFrontDrivePower = 0;
-	rightBackDrivePower = 0;
-	RunRobot();
+  AutoRF();
+  //AutoBF();
+  //AutoRB();
+  //AutoBB();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -231,9 +199,8 @@ task usercontrol() {
 	// User control code here, inside the loop
 
 	while (true) {
-	 	RC();  // recieve inputs
+		RC();  // recieve inputs
 		calcMotorValues();
-		//writeStream();
 		RunRobot();
 	}
 }
