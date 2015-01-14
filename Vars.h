@@ -55,7 +55,8 @@ const int BELT_POS3 = 300;
 const int BELT_POS4 = 400;
 const int BELT_POS5 = 500;
 
-
+const int BELT_SPEED_FAST = 127;
+const int BELT_SPEED_SLOW = 50;
 
 
 void resetVars() {

@@ -8,9 +8,11 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.0.1.1
+####Current Version: 3.0.2
 
 
+
+3.0.2 Feature - Added the ability for the belt to move both quickly and slowly. JANUARY 14, 2015
 
 3.0.1.1 Fix - Fixed the competition template
 

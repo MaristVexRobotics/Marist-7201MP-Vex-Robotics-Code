@@ -11,12 +11,19 @@ void RC(){
     armPower = MAINTAIN_HEIGHT_ARM_POWER;
 
 
-  if ((vexRT[Btn5UXmtr2] || vexRT[Btn6UXmtr2]) != (vexRT[Btn5DXmtr2] || vexRT[Btn6DXmtr2]))
-    if (vexRT[Btn5UXmtr2] || vexRT[Btn6UXmtr2])
-      beltPower = 50;
-   else //if (vexRT[Btn5DXmtr2] || vexRT[Btn6DXmtr2])
-      beltPower = -50;
+  if ((vexRT[Btn5UXmtr2] || vexRT[Btn6UXmtr2]) != (vexRT[Btn5DXmtr2] || vexRT[Btn6DXmtr2])) {
+    if (vexRT[Btn5UXmtr2])
+      beltPower = BELT_SPEED_SLOW;
+    else //if (vexRT[Btn5DXmtr2] || vexRT[Btn6DXmtr2])
+      beltPower = -BELT_SPEED_SLOW;
 
+    if (vexRT[Btn6UXmtr2])
+      beltPower = BELT_SPEED_FAST;
+    else if (vexRT[Btn6DXmtr2])
+      beltPower = -BELT_SPEED_FAST;
+  } else {
+    beltPower = 0;
+  }
 
   if (vexRT[Btn8D]) //3.0.1
     gyroOverride = true;

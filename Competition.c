@@ -27,12 +27,16 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0.1.1                           |
+|   Current Version 3.0.2                             |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.2 Feature - Added the ability for the belt to   |
+|           move both quickly and slowly.             |
+|                     JANUARY 14, 2015                |
 |                                                     |
 | 3.0.1.1 Fix - Fixed the competition template        |
 |                                                     |
