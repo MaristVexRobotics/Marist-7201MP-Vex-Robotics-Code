@@ -4,9 +4,12 @@ void RunRobot(){
   rightFrontEncoder = nMotorEncoder[rightFront];
   leftBackEncoder   = nMotorEncoder[leftBack];
   rightBackEncoder  = nMotorEncoder[rightBack];
-  
-  leftArmDegrees  = SensorValue[leftScissorRot];// - POTENTIOMETER_DIFF;
-  rightArmDegrees = SensorValue[leftScissorRot];//SensorValue[rightScissorRot];
+
+  deltaBelt = nMotorEncoder[rightBelt] - beltSensorVal;//new-old
+  deltaArm = SensorValue[leftScissorRot] - leftArmDegrees;
+
+  leftArmDegrees  = SensorValue[leftScissorRot] - POTENTIOMETER_DIFF;
+  rightArmDegrees = SensorValue[rightScissorRot];
   beltSensorVal   = nMotorEncoder[rightBelt];
 
   if (gyroOverride)//3.0.1

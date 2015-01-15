@@ -8,9 +8,11 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.0.2
+####Current Version: 3.0.3
 
 
+
+| 3.0.3 Feature - added code to maintain belt height and improved the code which maintains arm height. This is because three cubes are too much for the belt alone to handle JANUARY 14, 2015
 
 3.0.2 Feature - Added the ability for the belt to move both quickly and slowly. JANUARY 14, 2015
 

@@ -19,22 +19,9 @@ void calcMotorValues() {
   rightFrontDrivePower = actualFWD - actualLFT - rcDriveTurn;
   rightBackDrivePower  = actualFWD + actualLFT - rcDriveTurn;
 
-  //update current belt pos
-  /*if      (beltSensorVal + 5 >= BELT_POS1 && beltSensorVal - 5 <= BELT_POS1)
-    beltCurrentPos = 1;
-  else if (beltSensorVal + 5 >= BELT_POS2 && beltSensorVal - 5 <= BELT_POS2)
-    beltCurrentPos = 2;
-  else if (beltSensorVal + 5 >= BELT_POS3 && beltSensorVal - 5 <= BELT_POS3)
-    beltCurrentPos = 3;
-  else if (beltSensorVal + 5 >= BELT_POS4 && beltSensorVal - 5 <= BELT_POS4)
-    beltCurrentPos = 4;
-  else if (beltSensorVal + 5 >= BELT_POS5 && beltSensorVal - 5 <= BELT_POS5)
-    beltCurrentPos = 5;
+  if (armPower >= 0 && armPower < MAINTAIN_HEIGHT_ARM_POWER)
+    armPower = MAINTAIN_HEIGHT_ARM_POWER - deltaArm; //3.0.3
 
-  if (beltNextPos > beltCurrentPos)
-    beltPower = 127;
-  else if (beltNextPos < beltCurrentPos)
-    beltPower = 127;
-  else
-    beltPower = 0;*/
+  if (beltPower == 0)
+  	beltPower = MAINTAIN_HEIGHT_BELT_POWER - deltaBelt; //3.0.3
 }

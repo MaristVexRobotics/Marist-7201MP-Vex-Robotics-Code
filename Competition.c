@@ -1,7 +1,7 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
 #pragma config(Sensor, in1,    gyro,           sensorGyro)
 #pragma config(Sensor, in2,    leftScissorRot, sensorPotentiometer)
-#pragma config(Sensor, in3,    rightScissorRot,sensorPotentiometer)
+#pragma config(Sensor, in3,    rightScissorRot, sensorPotentiometer)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_3,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
@@ -9,14 +9,14 @@
 #pragma config(Sensor, I2C_5,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Motor,  port1,           rightFront,    tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
 #pragma config(Motor,  port2,           leftBack,      tmotorVex393, openLoop, encoder, encoderPort, I2C_1, 1000)
-#pragma config(Motor,  port3,           rightBack,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_4, 1000)
+#pragma config(Motor,  port3,           leftBelt,      tmotorVex393, openLoop, reversed)
 #pragma config(Motor,  port4,           leftFront,     tmotorVex393, openLoop, encoder, encoderPort, I2C_2, 1000)
-#pragma config(Motor,  port5,           rightScissor1, tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port6,           rightScissor2, tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port7,           leftScissor1,  tmotorVex393, openLoop)
-#pragma config(Motor,  port8,           leftScissor2,  tmotorVex393, openLoop)
-#pragma config(Motor,  port9,           leftBelt,      tmotorVex393, openLoop)
-#pragma config(Motor,  port10,          rightBelt,     tmotorVex393, openLoop, encoder, encoderPort, I2C_5, 1000)
+#pragma config(Motor,  port5,           leftScissor1,  tmotorVex393, openLoop)
+#pragma config(Motor,  port6,           leftScissor2,  tmotorVex393, openLoop)
+#pragma config(Motor,  port7,           rightScissor1, tmotorVex393, openLoop, reversed)
+#pragma config(Motor,  port8,           rightScissor2, tmotorVex393, openLoop, reversed)
+#pragma config(Motor,  port9,           rightBelt,     tmotorVex393, openLoop, encoder, encoderPort, I2C_5, 1000)
+#pragma config(Motor,  port10,          rightBack,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_4, 1000)
 #pragma platform(VEX)
 
 //Competition Control and Duration Settings
@@ -33,6 +33,12 @@
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.3 Feature - added code to maintain belt height  |
+|           and improved the code which maintains     |
+|           arm height. This is because three cubes   |
+|           are too much for the belt alone to handle |
+|                     JANUARY 14, 2015                |
 |                                                     |
 | 3.0.2 Feature - Added the ability for the belt to   |
 |           move both quickly and slowly.             |
