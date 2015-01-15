@@ -1,3 +1,6 @@
+#pragma systemFile
+//suppresses empty function warnings
+
 void Auton(int leftFrontWheel, int leftBackWheel, int rightFrontWheel, int rightBackWheel,
            int armSpeed, int beltSpeed,
            int leftFrontEncoderGoal, int leftBackEncoderGoal, int rightFrontEncoderGoal, int rightBackEncoderGoal,
