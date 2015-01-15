@@ -8,9 +8,11 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.1
+####Current Version: 3.1.1
 
 
+
+3.1.1 Fix - the old maintain belt height and arm height code did nothing. small mistake. This is a rewrite of that code, which fixes it. JANUARY 15, 2015
 
 3.1 Feature - music. nuff said. JANUARY 14, 2015
 

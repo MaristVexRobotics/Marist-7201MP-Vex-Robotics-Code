@@ -5,9 +5,6 @@ void RunRobot(){
   leftBackEncoder   = nMotorEncoder[leftBack];
   rightBackEncoder  = nMotorEncoder[rightBack];
 
-  deltaBelt = nMotorEncoder[rightBelt] - beltSensorVal;//new-old
-  deltaArm = SensorValue[leftScissorRot] - leftArmDegrees;
-
   leftArmDegrees  = SensorValue[leftScissorRot] - POTENTIOMETER_DIFF;
   rightArmDegrees = SensorValue[rightScissorRot];
   beltSensorVal   = nMotorEncoder[rightBelt];

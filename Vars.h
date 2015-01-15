@@ -29,8 +29,8 @@ int lineReadMid;
 
 
 bool gyroOverride = false;//3.0.1
-int deltaBelt;
-int deltaArm;
+int beltOld;
+int armOld;
 
 
 //==================

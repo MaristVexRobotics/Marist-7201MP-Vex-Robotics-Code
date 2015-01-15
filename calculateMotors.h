@@ -19,9 +19,13 @@ void calcMotorValues() {
   rightFrontDrivePower = actualFWD - actualLFT - rcDriveTurn;
   rightBackDrivePower  = actualFWD + actualLFT - rcDriveTurn;
 
-  if (armPower >= 0 && armPower < MAINTAIN_HEIGHT_ARM_POWER)
-    armPower = MAINTAIN_HEIGHT_ARM_POWER - deltaArm; //3.0.3
+  if (armPower != 0) // 3.1.1
+    armOld = leftArmDegrees;
+  else
+    armPower = MAINTAIN_HEIGHT_ARM_POWER + (armOld - leftArmDegrees) * CORRECTION;
 
-  if (beltPower == 0)
-  	beltPower = MAINTAIN_HEIGHT_BELT_POWER - deltaBelt; //3.0.3
+  if (beltPower != 0) // 3.1.1
+    beltOld = beltSensorVal;
+  else
+    beltPower = MAINTAIN_HEIGHT_BELT_POWER + (beltOld - beltSensorVal) * CORRECTION;
 }
