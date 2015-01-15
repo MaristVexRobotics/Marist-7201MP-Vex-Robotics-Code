@@ -41,7 +41,7 @@ const float EFR = 1;
 const float EBL = 1;
 const float EBR = 1;
 const int POTENTIOMETER_DIFF = 749;
-const float CORRECTION = .5;
+const float CORRECTION = .2;
 const int AUTO_TIME_INTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
 const int MAINTAIN_HEIGHT_ARM_POWER = 10;
 const int MAINTAIN_HEIGHT_BELT_POWER = 10;

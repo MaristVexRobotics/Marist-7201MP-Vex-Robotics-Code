@@ -27,12 +27,17 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0.2                             |
+|   Current Version 3.0.3.1                           |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.0.3.1 Tweak - changed the correction value to .2  |
+|           this makes it less sensitive, and reduces |
+|           the chance of overcorrecting              |
+|                     JANUARY 14, 2015                |
 |                                                     |
 | 3.0.3 Feature - added code to maintain belt height  |
 |           and improved the code which maintains     |

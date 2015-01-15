@@ -331,7 +331,7 @@ void snapBackLine(int speed) {
   rightFrontDrivePower = 0;
 }
 
-/**TODO:
+//TODO:
 void snapFrontLeft(int speed);
 void snapFrontRight(int speed);
 void snapBackLeft(int speed);
@@ -340,4 +340,4 @@ void snapBackRight(int speed);
 void waitBlockCompletion();
 void signalBlockComplete();
 
-void move180(int power); // moves backwards while performing a 180 degree turn, so it ends up facing where it's going.*/
+void move180(int power); // moves backwards while performing a 180 degree turn, so it ends up facing where it's going.
