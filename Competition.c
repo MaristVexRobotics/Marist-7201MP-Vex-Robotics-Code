@@ -27,12 +27,14 @@
 /*****************************************************\
 |   Code by Konrad Kraemer                            |
 |                                                     |
-|   Current Version 3.0.3.1                           |
+|   Current Version 3.1                               |
 |                                                     |
 |   Modular code to ease testing on VirtualWorlds.    |
 |   Autonomous code records itself using the          |
 |   writeStream() function.                           |
 |                                                     |
+|                                                     |
+| 3.1 Feature - music. nuff said. JANUARY 14, 2015    |
 |                                                     |
 | 3.0.3.1 Tweak - changed the correction value to .2  |
 |           this makes it less sensitive, and reduces |
@@ -183,6 +185,8 @@ void pre_auton() {
 
   resetVars(); // reset all variables
   resetSensors(); // reset all sensors
+  nVolume = 4;
+  PlaySoundFile("katyperry.wav");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

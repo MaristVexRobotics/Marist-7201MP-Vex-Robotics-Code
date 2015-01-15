@@ -8,9 +8,11 @@ Code By Konrad Kraemer
 ###Changelog:
 -------------
 
-####Current Version: 3.0.3.1
+####Current Version: 3.1
 
 
+
+3.1 Feature - music. nuff said. JANUARY 14, 2015
 
 3.0.3.1 Tweak - changed the correction value to .2. this makes it less sensitive, and reduces the chance of overcorrecting JANUARY 14, 2015
 

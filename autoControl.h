@@ -264,11 +264,13 @@ void turnRight(int degrees, int speed) { // look at that
 void setScissorHeight(int height, int speed) {
   if (height > leftArmDegrees) {
     armPower = speed;
-    while(height > leftArmDegrees); // wait until the scissor lift has reached the height
+    while(height > leftArmDegrees)
+      wait1Msec(1);// wait until the scissor lift has reached the height
     armPower = MAINTAIN_HEIGHT_ARM_POWER;
   } else {
     armPower = -speed;
-    while(height < leftArmDegrees); // wait until the scissor lift has reached the height
+    while(height < leftArmDegrees)
+      wait1Msec(1);// wait until the scissor lift has reached the height
     armPower = MAINTAIN_HEIGHT_ARM_POWER;
   }
 }
