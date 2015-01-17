@@ -188,18 +188,20 @@
 
 //rotation sensor = 627.2 counts per rotation. Konrad is awesome at coding. The lady bangers will win it all. Noah is a floating ass. Carson is a sophomore. that means he's stupid :).
 
-
-
 task main() {
 	nVolume = 4;
-	PlaySoundFile("katyperry.wav");
-  resetVars(); // reset all variables
+	PlaySoundFile(SONGNAME);
+	resetVars(); // reset all variables
   resetSensors(); // reset all sensors
-  //AutoRF();//run the RedFront autonomous
+  //AutoRight();//run the RedFront autonomous
+
   while (true) {
+  	if (bSoundQueueAvailable) {
+  		PlaySoundFile(SONGNAME);
+  	}
     RC();  // recieve inputs
     calcMotorValues();
-    //writeStream();
+    writeStream();
     RunRobot();
   }
 }

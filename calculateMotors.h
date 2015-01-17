@@ -22,10 +22,10 @@ void calcMotorValues() {
   if (armPower != 0) // 3.1.1
     armOld = leftArmDegrees;
   else
-    armPower = MAINTAIN_HEIGHT_ARM_POWER + (armOld - leftArmDegrees) * CORRECTION;
+    armPower = MAINTAIN_HEIGHT_ARM_POWER + (armOld - leftArmDegrees);
 
   if (beltPower != 0) // 3.1.1
     beltOld = beltSensorVal;
   else
-    beltPower = MAINTAIN_HEIGHT_BELT_POWER + (beltOld - beltSensorVal) * CORRECTION;
+    beltPower = MAINTAIN_HEIGHT_BELT_POWER + (beltOld - beltSensorVal);
 }

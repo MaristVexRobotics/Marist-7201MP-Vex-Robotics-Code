@@ -192,7 +192,11 @@ void pre_auton() {
   resetVars(); // reset all variables
   resetSensors(); // reset all sensors
   nVolume = 4;
-  PlaySoundFile("katyperry.wav");
+  while (bSoundQueueAvailable) {
+  	PlaySoundFile(SONGNAME);
+  	writeDebugStreamLine("Added to sound kwayway");
+  }
+  writeDebugStreamLine("done adding to kwayway");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -205,10 +209,8 @@ void pre_auton() {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 task autonomous() {
-  AutoRF();
-  //AutoBF();
-  //AutoRB();
-  //AutoBB();
+  //AutoLeft();
+  AutoRight();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -224,6 +226,8 @@ task usercontrol() {
   // User control code here, inside the loop
 
   while (true) {
+  	if (bSoundQueueAvailable)
+  		PlaySoundFile(SONGNAME);
     RC();  // recieve inputs
     calcMotorValues();
     RunRobot();

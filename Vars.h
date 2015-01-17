@@ -1,3 +1,5 @@
+#define SONGNAME "katyperry"
+
 //drivetrain vars
 int leftBackDrivePower;
 int rightBackDrivePower;
@@ -32,6 +34,8 @@ bool gyroOverride = false;//3.0.1
 int beltOld;
 int armOld;
 
+int armDiff;
+
 
 //==================
 //constants
@@ -40,7 +44,7 @@ const float EFL = 1;
 const float EFR = 1;
 const float EBL = 1;
 const float EBR = 1;
-const int POTENTIOMETER_DIFF = 749;
+const int POTENTIOMETER_DIFF = 818;
 const float CORRECTION = .2;
 const int AUTO_TIME_INTERVAL = 5; // time between execution of autonomous reads (in 10 millisecond increments (3 = 30ms))
 const int MAINTAIN_HEIGHT_ARM_POWER = 10;

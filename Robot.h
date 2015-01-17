@@ -25,7 +25,9 @@ void RunRobot(){
   motor[rightScissor1] = armPower;
   motor[rightScissor2] = armPower;
 
-  int diff = 0;//rightArmDegrees - leftArmDegrees;
+  armDiff = rightArmDegrees - leftArmDegrees;
+  int diff = armDiff * CORRECTION;
+  diff = 0;
   if (armPower > 0) {
     if (leftArmDegrees > rightArmDegrees) {
       motor[leftScissor1] += diff;

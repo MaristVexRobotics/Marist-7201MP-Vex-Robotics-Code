@@ -35,7 +35,7 @@ void writeStream() {
    || abs(armPower) > 10 || abs(beltPower) > 10
    || abs(leftFrontEncoder) > 10 || abs(rightFrontEncoder) > 10
    || abs(leftBackEncoder)  > 10 || abs(rightBackEncoder)  > 10
-   || abs(leftArmDegrees)   > 10 || abs(rightArmDegrees)   > 10) {
+   /*|| abs(leftArmDegrees)   > 10 || abs(rightArmDegrees)   > 10*/) {
 
     writeDebugStream("Auton(%d, ", (leftFrontDrivePower));
     writeDebugStream("%d, ", (leftBackDrivePower));
