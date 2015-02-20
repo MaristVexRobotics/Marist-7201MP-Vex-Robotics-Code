@@ -5,7 +5,7 @@ void calcMotorValues() {
   int actualFWD = rcDriveForward * cosDegrees(gyroValue) + rcDriveStrafe * cosDegrees(90 + gyroValue);
   int actualLFT = rcDriveForward * sinDegrees(gyroValue) + rcDriveStrafe * sinDegrees(90 + gyroValue);
 
-  if (abs(actualLFT) <= DEADZONE)
+  if (abs(actualLFT) <= STRAFE_DEADZONE)
     actualLFT = 0;
 
 
@@ -19,13 +19,24 @@ void calcMotorValues() {
   rightFrontDrivePower = actualFWD - actualLFT - rcDriveTurn;
   rightBackDrivePower  = actualFWD + actualLFT - rcDriveTurn;
 
-  if (armPower != 0) // 3.1.1
-    armOld = leftArmDegrees;
-  else
-    armPower = MAINTAIN_HEIGHT_ARM_POWER + (armOld - leftArmDegrees);
+
+
+  if (armPower != 0) { // 3.1.1
+    armMaintainHeight = leftArmDegrees;
+  }
+
+  if (armPower == 0) {
+    int proportional = armMaintainHeight - leftArmDegrees;
+    int derivative = proportional - armError;
+    integral = integral + proportional;
+    armPower = Kp * proportional + Kd * derivative + Ki * integral;
+    armError = proportional;
+    //armPower = MAINTAIN_HEIGHT_ARM_POWER + (armMaintainHeight - leftArmDegrees);*/
+  }
+
 
   if (beltPower != 0) // 3.1.1
-    beltOld = beltSensorVal;
+    beltMaintainValue = beltSensorVal;
   else
-    beltPower = MAINTAIN_HEIGHT_BELT_POWER + (beltOld - beltSensorVal);
+    beltPower = MAINTAIN_HEIGHT_BELT_POWER + (beltMaintainValue - beltSensorVal);
 }

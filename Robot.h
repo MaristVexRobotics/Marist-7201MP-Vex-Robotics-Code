@@ -7,7 +7,7 @@ void RunRobot(){
 
   leftArmDegrees  = SensorValue[leftScissorRot] - POTENTIOMETER_DIFF;
   rightArmDegrees = SensorValue[rightScissorRot];
-  beltSensorVal   = nMotorEncoder[rightBelt];
+  beltSensorVal   = nMotorEncoder[leftBelt];
 
   if (gyroOverride)//3.0.1
     gyroValue = 0;
@@ -19,37 +19,21 @@ void RunRobot(){
   motor[rightFront] = rightFrontDrivePower * EFR;
   motor[rightBack]  = rightBackDrivePower * EBR;
 
+  int diff = leftArmDegrees - rightArmDegrees;
+  //diff = 0;
+  int deriv = diff - armDiffOld;
+  diffIntegral = diffIntegral + diff;
+  armDiffOld = diff;
+  int result = Kp * diff + Kd * deriv + Ki * diffIntegral;
 
   motor[leftScissor1]  = armPower;
   motor[leftScissor2]  = armPower;
-  motor[rightScissor1] = armPower;
-  motor[rightScissor2] = armPower;
-
-  armDiff = rightArmDegrees - leftArmDegrees;
-  int diff = armDiff * CORRECTION;
-  diff = 0;
-  if (armPower > 0) {
-    if (leftArmDegrees > rightArmDegrees) {
-      motor[leftScissor1] += diff;
-      motor[leftScissor2] += diff;
-    } else /*if (leftArmDegrees < rightArmDegrees)*/ {
-      motor[rightScissor1] -= diff;
-      motor[rightScissor2] -= diff;
-    }
-  } else /*if (scissorPower < 0)*/ {
-    if (leftArmDegrees > rightArmDegrees) {
-      motor[rightScissor1] -= diff;
-      motor[rightScissor2] -= diff;
-    } else /*if (leftArmDegrees < rightArmDegrees)*/ {
-      motor[leftScissor1] += diff;
-      motor[leftScissor2] += diff;
-    }
-  }
-
-
+  motor[rightScissor1] = armPower + result;
+  motor[rightScissor2] = armPower + result;
 
   motor[leftBelt] = beltPower;
   motor[rightBelt] = beltPower;
+  //motor[skyrise] = skyrisePower;
 
 }
 
@@ -60,7 +44,6 @@ void resetSensors() {
   nMotorEncoder[rightFront] = 0;
   nMotorEncoder[leftBack]   = 0;
   nMotorEncoder[rightBack]  = 0;
-  nMotorEncoder[rightBelt]  = 0;
-  SensorValue[rightScissorRot] = 0;
-  SensorValue[leftScissorRot]  = 0;
+  nMotorEncoder[leftBelt]  = 0;
+  armMaintainHeight = SensorValue[leftScissorRot];
 }

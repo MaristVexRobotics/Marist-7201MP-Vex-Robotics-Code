@@ -194,9 +194,7 @@ void pre_auton() {
   nVolume = 4;
   while (bSoundQueueAvailable) {
   	PlaySoundFile(SONGNAME);
-  	writeDebugStreamLine("Added to sound kwayway");
   }
-  writeDebugStreamLine("done adding to kwayway");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
