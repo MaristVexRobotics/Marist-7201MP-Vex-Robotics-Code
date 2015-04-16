@@ -197,6 +197,11 @@ void moveRight(int ticks, int speed) {///errere
 }
 
 void drivetrainStop() {
+	leftBackDrivePower   = leftBackDrivePower * -1;
+  rightBackDrivePower  = rightBackDrivePower * -1;
+  leftFrontDrivePower  = leftFrontDrivePower * -1;
+  rightFrontDrivePower = rightFrontDrivePower * -1;
+  RunRobot();
   leftBackDrivePower   = 0;
   rightBackDrivePower  = 0;
   leftFrontDrivePower  = 0;
@@ -262,29 +267,40 @@ void turnRight(int degrees, int speed) { // look at that
 }
 
 void setScissorHeight(int height, int speed) {
+	RunRobot();
   if (height > leftArmDegrees) {
     armPower = speed;
-    while(height > leftArmDegrees)
+    while(height > leftArmDegrees) {
       wait1Msec(1);// wait until the scissor lift has reached the height
-    armPower = MAINTAIN_HEIGHT_ARM_POWER;
+      RunRobot();
+    }
+    armPower = -10;
   } else {
     armPower = -speed;
-    while(height < leftArmDegrees)
+    while(height < leftArmDegrees) {
       wait1Msec(1);// wait until the scissor lift has reached the height
-    armPower = MAINTAIN_HEIGHT_ARM_POWER;
+      RunRobot();
+    }
+    armPower = 10;
   }
+  RunRobot();
+  armMaintainHeight = height;
 }
 
 void beltFwd(int mSeconds) {
   beltPower = 127;
+  RunRobot();
   wait1Msec(mSeconds);
   beltPower = 0;
+  RunRobot();
 }
 
 void beltBkwd(int mSeconds) {
   beltPower = -127;
+  RunRobot();
   wait1Msec(mSeconds);
   beltPower = 0;
+  RunRobot();
 }
 
 void snapLeftLine(int speed) {

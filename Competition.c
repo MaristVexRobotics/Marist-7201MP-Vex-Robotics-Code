@@ -1,21 +1,24 @@
+#pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
+#pragma config(UART_Usage, UART2, uartNotUsed, baudRate4800, IOPins, None, None)
 #pragma config(I2C_Usage, I2C1, i2cSensors)
 #pragma config(Sensor, in1,    gyro,           sensorGyro)
 #pragma config(Sensor, in2,    leftScissorRot, sensorPotentiometer)
 #pragma config(Sensor, in3,    rightScissorRot, sensorPotentiometer)
+#pragma config(Sensor, dgtl11, rightSolenoid,  sensorDigitalOut)
+#pragma config(Sensor, dgtl12, leftSolenoid,   sensorDigitalOut)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_3,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_4,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Sensor, I2C_5,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign)
-#pragma config(Motor,  port1,           rightFront,    tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
-#pragma config(Motor,  port2,           leftBack,      tmotorVex393, openLoop, encoder, encoderPort, I2C_1, 1000)
-#pragma config(Motor,  port3,           leftBelt,      tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port4,           leftFront,     tmotorVex393, openLoop, encoder, encoderPort, I2C_2, 1000)
+#pragma config(Motor,  port1,           leftBack,      tmotorVex393, openLoop, encoder, encoderPort, I2C_1, 1000)
+#pragma config(Motor,  port2,           rightScissor2, tmotorVex393, openLoop)
+#pragma config(Motor,  port3,           rightBelt,     tmotorVex393, openLoop)
+#pragma config(Motor,  port4,           rightScissor1, tmotorVex393, openLoop, reversed)
 #pragma config(Motor,  port5,           leftScissor1,  tmotorVex393, openLoop)
-#pragma config(Motor,  port6,           leftScissor2,  tmotorVex393, openLoop)
-#pragma config(Motor,  port7,           rightScissor1, tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port8,           rightScissor2, tmotorVex393, openLoop, reversed)
-#pragma config(Motor,  port9,           rightBelt,     tmotorVex393, openLoop, encoder, encoderPort, I2C_5, 1000)
+#pragma config(Motor,  port6,           leftScissor2,  tmotorVex393, openLoop, reversed)
+#pragma config(Motor,  port7,           rightFront,    tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_3, 1000)
+#pragma config(Motor,  port8,           leftFront,     tmotorVex393, openLoop, encoder, encoderPort, I2C_2, 1000)
+#pragma config(Motor,  port9,           leftBelt,      tmotorVex393, openLoop)
 #pragma config(Motor,  port10,          rightBack,     tmotorVex393, openLoop, reversed, encoder, encoderPort, I2C_4, 1000)
 #pragma platform(VEX)
 
@@ -169,8 +172,7 @@
 #include "Robot.h"  //when using actual robot
 #include "RC.h"
 
-#include "autoControl.h"
-#include "autoCode.h"
+#include "Autonomous.h"
 
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
@@ -189,12 +191,27 @@ void pre_auton() {
   // Autonomous and Tele-Op modes. You will need to manage all user created tasks if set to false.
   bStopTasksBetweenModes = true;
 
+  clearLCDLine(0);
+ 	clearLCDLine(1);
+
+  displayLCDPos(0, 0);
+  displayNextLCDString("Calibrating Gyro");
+
+  SensorType[in1] = sensorNone;
+  wait1Msec(1000);
+  SensorType[in1] = sensorGyro;
+  wait1Msec(2000);
+
   resetVars(); // reset all variables
   resetSensors(); // reset all sensors
   nVolume = 4;
-  while (bSoundQueueAvailable) {
+  /*while (bSoundQueueAvailable) {
   	PlaySoundFile(SONGNAME);
-  }
+  }*/
+
+  //pos = 1;
+  AutoSelector();
+  GyroCalibration();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -207,8 +224,7 @@ void pre_auton() {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 task autonomous() {
-  //AutoLeft();
-  AutoRight();
+  Autonomous();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -224,8 +240,8 @@ task usercontrol() {
   // User control code here, inside the loop
 
   while (true) {
-  	if (bSoundQueueAvailable)
-  		PlaySoundFile(SONGNAME);
+  	/*if (bSoundQueueAvailable)
+  		PlaySoundFile(SONGNAME);*/
     RC();  // recieve inputs
     calcMotorValues();
     RunRobot();

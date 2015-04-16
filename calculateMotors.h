@@ -29,7 +29,12 @@ void calcMotorValues() {
     int proportional = armMaintainHeight - leftArmDegrees;
     int derivative = proportional - armError;
     integral = integral + proportional;
-    armPower = Kp * proportional + Kd * derivative + Ki * integral;
+    if (integral > 1000)
+  	  integral = 1000;
+ 	  else if (integral < -1000)
+ 		  integral = -1000;
+ 		if (!correctionOverride)
+    	armPower = KpA * proportional + KdA * derivative + KiA * integral;
     armError = proportional;
     //armPower = MAINTAIN_HEIGHT_ARM_POWER + (armMaintainHeight - leftArmDegrees);*/
   }
